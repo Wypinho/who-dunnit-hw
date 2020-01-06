@@ -153,45 +153,58 @@
 
 // episode 8
 
-const scenario = {
-  murderer: 'Mrs. Peacock',
-  room: 'Conservatory',
-  weapon: 'Lead Pipe'
-};
-
-const changeScenario = function() {
-  scenario.murderer = 'Mrs. Peacock';
-  scenario.room = 'Dining Room';
-
-  const plotTwist = function(room) {
-    if (scenario.room === room) {
-      scenario.murderer = 'Colonel Mustard';
-    }
-
-    const unexpectedOutcome = function(murderer) {
-      if (scenario.murderer === murderer) {
-        scenario.weapon = 'Candle Stick';
-      }
-    }
-
-    unexpectedOutcome('Colonel Mustard');
-  }
-
-  plotTwist('Dining Room');
-}
-
-const declareWeapon = function() {
-  return `The weapon is ${scenario.weapon}.`
-}
-
-changeScenario();
-const verdict = declareWeapon();
-console.log(verdict);
+// const scenario = {
+//   murderer: 'Mrs. Peacock',
+//   room: 'Conservatory',
+//   weapon: 'Lead Pipe'
+// };
+//
+// const changeScenario = function() {
+//   scenario.murderer = 'Mrs. Peacock';
+//   scenario.room = 'Dining Room';
+//
+//   const plotTwist = function(room) {
+//     if (scenario.room === room) {
+//       scenario.murderer = 'Colonel Mustard';
+//     }
+//
+//     const unexpectedOutcome = function(murderer) {
+//       if (scenario.murderer === murderer) {
+//         scenario.weapon = 'Candle Stick';
+//       }
+//     }
+//
+//     unexpectedOutcome('Colonel Mustard');
+//   }
+//
+//   plotTwist('Dining Room');
+// }
+//
+// const declareWeapon = function() {
+//   return `The weapon is ${scenario.weapon}.`
+// }
+//
+// changeScenario();
+// const verdict = declareWeapon();
+// console.log(verdict);
 
 // predicted output = The weapon is Candle Stick.
 // reason = changeScenario makes room = Dining Room, meaning plotTwist changes the murderer, meaning unexpectedOutcome is to change the weapon.
 
 // episode 9
 
-// predicted output =
-// reason =
+let murderer = 'Professor Plum';
+
+if (murderer === 'Professor Plum') {
+  let murderer = 'Mrs. Peacock';
+}
+
+const declareMurderer = function() {
+  return `The murderer is ${murderer}.`;
+}
+
+const verdict = declareMurderer();
+console.log(verdict);
+
+// predicted output = The murderer is Professor Plum.
+// reason = Second let murderer variable only exists within the if block (198-200), so declareMurderer will use the first murderer variable.
