@@ -97,30 +97,101 @@
 
 // episode 6
 
-let murderer = 'Colonel Mustard';
-
-const changeMurderer = function() {
-  murderer = 'Mr. Green';
-
-  const plotTwist = function() {
-    murderer = 'Mrs. White';
-  }
-
-  plotTwist();
-}
-
-const declareMurderer = function () {
-  return `The murderer is ${murderer}.`;
-}
-
-changeMurderer();
-const verdict = declareMurderer();
-console.log(verdict);
+// let murderer = 'Colonel Mustard';
+//
+// const changeMurderer = function() {
+//   murderer = 'Mr. Green';
+//
+//   const plotTwist = function() {
+//     murderer = 'Mrs. White';
+//   }
+//
+//   plotTwist();
+// }
+//
+// const declareMurderer = function () {
+//   return `The murderer is ${murderer}.`;
+// }
+//
+// changeMurderer();
+// const verdict = declareMurderer();
+// console.log(verdict);
 
 // predicted output = The murderer is Mrs. White.
 // reason = let murderer is declared in the global function so is accessible within changeMurderer.
 
 // episode 7
+
+// let murderer = 'Professor Plum';
+//
+// const changeMurderer = function() {
+//   murderer = 'Mr. Green';
+//
+//   const plotTwist = function() {
+//     let murderer = 'Colonel Mustard';
+//
+//     const unexpectedOutcome = function() {
+//       murderer = 'Miss Scarlet';
+//     }
+//
+//     unexpectedOutcome();
+//   }
+//
+//   plotTwist();
+// }
+//
+// const declareMurderer = function() {
+//   return `The murderer is ${murderer}.`;
+// }
+//
+// changeMurderer();
+// const verdict = declareMurderer();
+// console.log(verdict);
+
+// predicted output = The murderer is Mr Green.
+// reason = The second let murderer variable only exists in the plotTwist function, and will be changed within unexpectedOutcome. The first murderer variable remains unchanged after line 128.
+
+// episode 8
+
+const scenario = {
+  murderer: 'Mrs. Peacock',
+  room: 'Conservatory',
+  weapon: 'Lead Pipe'
+};
+
+const changeScenario = function() {
+  scenario.murderer = 'Mrs. Peacock';
+  scenario.room = 'Dining Room';
+
+  const plotTwist = function(room) {
+    if (scenario.room === room) {
+      scenario.murderer = 'Colonel Mustard';
+    }
+
+    const unexpectedOutcome = function(murderer) {
+      if (scenario.murderer === murderer) {
+        scenario.weapon = 'Candle Stick';
+      }
+    }
+
+    unexpectedOutcome('Colonel Mustard');
+  }
+
+  plotTwist('Dining Room');
+}
+
+const declareWeapon = function() {
+  return `The weapon is ${scenario.weapon}.`
+}
+
+changeScenario();
+const verdict = declareWeapon();
+console.log(verdict);
+
+// predicted output = The weapon is Candle Stick.
+// reason = changeScenario makes room = Dining Room, meaning plotTwist changes the murderer, meaning unexpectedOutcome is to change the weapon.
+
+// episode 9
 
 // predicted output =
 // reason =
